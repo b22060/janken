@@ -9,7 +9,8 @@
   <a href="/logout">ログアウト</a>
   <h1>じゃんけんゲーム</h1> <!--表示-->
 
-  <p>エントリー</p>
+  <!--entry.users.size()でも出来た-->
+  <p>今[[${entry.get_Number_People()}]]人がエントリーしています</p>
   <ul>
     <li th:each="user : ${entry.users}">[[${user}]]</li>
   </ul>

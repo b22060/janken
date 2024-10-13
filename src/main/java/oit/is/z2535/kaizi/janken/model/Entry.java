@@ -37,4 +37,8 @@ public class Entry {
   public void setUsers(ArrayList<String> users) {
     this.users = users;
   }
+
+  public int get_Number_People(){
+    return users.size();
+  }
 }
