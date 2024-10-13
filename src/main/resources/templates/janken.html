@@ -8,13 +8,17 @@
 <body>
   <a href="/logout">ログアウト</a>
   <h1>じゃんけんゲーム</h1> <!--表示-->
-  <p th:if="${username}"> <!--もし入力があれば-->
-  <h1>Hi! [[${username}]]</h1> <!--入力した名前を表示-->
-  </p>
 
-  <a href="/jankengame?hand=Gu">グー</a>
-  <a href="/jankengame?hand=Ch">チョキ</a>
-  <a href="/jankengame?hand=Pa">パー</a>
+  <p>エントリー</p>
+  <ul>
+    <!--eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
+        thが指定されているので[]が不要になる-->
+    <li th:each="user : ${entry.users}">[[${user}]]</li>
+  </ul>
+
+  <a href="/janken/jankengame?hand=Gu">グー</a>
+  <a href="/janken/jankengame?hand=Ch">チョキ</a>
+  <a href="/janken/jankengame?hand=Pa">パー</a>
   </br>
 
   <div th:if="${myhand}">
