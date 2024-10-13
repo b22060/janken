@@ -6,10 +6,13 @@
 </head>
 
 <body>
+  <a href="/logout">ログアウト</a>
   <h1>じゃんけんゲーム</h1> <!--表示-->
-  <p th:if="${username}"> <!--もし入力があれば-->
-  <h1>Hi! [[${username}]]</h1> <!--入力した名前を表示-->
-  </p>
+
+  <p>エントリー</p>
+  <ul>
+    <li th:each="user : ${entry.users}">[[${user}]]</li>
+  </ul>
 
   <a href="/jankengame?hand=Gu">グー</a>
   <a href="/jankengame?hand=Ch">チョキ</a>
