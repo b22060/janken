@@ -27,7 +27,7 @@ public class JankenController {
   }
 
   @GetMapping("/jankengame")
-  public String jankengame(@RequestParam String hand, ModelMap model, Principal prin) {
+  public String jankengame(@RequestParam String hand, ModelMap model) {
     Janken janken = new Janken();
     String cpuhand = janken.cpuhand();
     String result = janken.judge(hand, cpuhand);
@@ -37,8 +37,7 @@ public class JankenController {
     model.addAttribute("result", result);
     // ModelMap型変数のmodelにmyhandという名前の変数で，handの値を登録する．
     // ここで値を登録するとthymeleafが受け取り，htmlで処理することができるようになる
-    String loginUser = prin.getName();
-    this.entry.addUser(loginUser);
+
     model.addAttribute("entry", this.entry);
 
     return "janken.html";
