@@ -31,7 +31,7 @@ public class JankenController {
 
   @GetMapping("/janken")
   public String janken(Principal prin, ModelMap model) {
-    ArrayList<User> user = usermappser.selectAllByUserName();
+    ArrayList<User> user = usermappser.selectAllByUsers();
     ArrayList<Match> match = matchmappser.selectAllByMatchs();
     String loginUser = prin.getName();
     this.entry.addUser(loginUser);
@@ -57,6 +57,14 @@ public class JankenController {
     model.addAttribute("entry", this.entry);
 
     return "janken.html";
+  }
+
+  @GetMapping("/match")
+  public String match(@RequestParam Integer id, ModelMap model) {
+    ArrayList<User> userid = usermappser.selectById(id);
+    model.addAttribute("userinfo", userid);
+
+    return "match.html";
   }
 
 }

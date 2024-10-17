@@ -18,11 +18,10 @@
 
   <h1>エントリー</h1>
   <p th:if="${userName}">
-  <div th:each="user,stat:${userName}">
     <tr>
-      <td>・[[${user.userName}]]</td>
+    <li th:each="user : ${userName}"><a th:href="@{/match(id=${user.id})}"> [[${user.username}]] </a></li>
     </tr>
-  </div>
+  </p>
 
   </br>
 
