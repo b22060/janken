@@ -13,15 +13,15 @@
   <p>今[[${entry.get_Number_People()}]]人がエントリーしています</p>-->
 
   <ul>
-  Hi <nobr sec:authentication="name"></nobr>
+    Hi <nobr sec:authentication="name"></nobr>
   </ul>
 
   <h1>エントリー</h1>
-  <p th:if="${userName}">
-    <tr>
-    <li th:each="user : ${userName}"><a th:href="@{/match(id=${user.id})}"> [[${user.username}]] </a></li>
-    </tr>
-  </p>
+  <div th:if="${userName}">
+    <ul>
+      <li th:each="user : ${userName}"><a th:href="@{/match(id=${user.id})}"> [[${user.userName}]] </a></li> <!--usernameという変数だと認識してくれなかった-->
+    </ul>
+  </div>
 
   </br>
 

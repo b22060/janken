@@ -10,6 +10,6 @@ public interface UserMapper {
   @Select("SELECT * from users") //Userの全部のデータを取ってくるメソッド
   ArrayList<User> selectAllByUsers();
 
-  @Select("SELECT * from users where id = #{id}") //特定のidを表示
-  ArrayList<User> selectById(int id);
+  @Select("SELECT userName from users where id = #{id}") //特定のidで特定の名前を表示
+  String selectById(int id);
 }

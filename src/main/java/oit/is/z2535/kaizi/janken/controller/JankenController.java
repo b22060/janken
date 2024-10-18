@@ -61,8 +61,8 @@ public class JankenController {
 
   @GetMapping("/match")
   public String match(@RequestParam Integer id, ModelMap model) {
-    ArrayList<User> userid = usermappser.selectById(id);
-    model.addAttribute("userinfo", userid);
+    String userid = usermappser.selectById(id);
+    model.addAttribute("name", userid);
 
     return "match.html";
   }

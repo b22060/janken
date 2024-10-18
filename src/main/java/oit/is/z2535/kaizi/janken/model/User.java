@@ -2,7 +2,7 @@ package oit.is.z2535.kaizi.janken.model;
 
 public class User {
   int id;
-  String username;
+  String userName;
 
   public int getId() {
     return id;
@@ -13,11 +13,11 @@ public class User {
   }
 
   public String getUserName() {
-    return username;
+    return userName;
   }
 
-  public void setUserName(String username) {
-    this.username = username;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
 }
