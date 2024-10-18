@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>試合会場</title> <!--タイトル-->
+</head>
+
+<body>
+  <h1>Match</h1> <!--表示-->
+
+  <div th:if="${name}">
+  <h2>
+    <nobr sec:authentication="name"></nobr>V.S.<td>[[${name}]]</td>
+  </h2>
+</div>
+
+</body>
+
+</html>

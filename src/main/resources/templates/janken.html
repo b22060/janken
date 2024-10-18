@@ -9,11 +9,34 @@
   <a href="/logout">ログアウト</a>
   <h1>じゃんけんゲーム</h1> <!--表示-->
 
-  <!--entry.users.size()でも出来た-->
-  <p>今[[${entry.get_Number_People()}]]人がエントリーしています</p>
+  <!--entry.users.size()でも出来た
+  <p>今[[${entry.get_Number_People()}]]人がエントリーしています</p>-->
+
   <ul>
-    <li th:each="user : ${entry.users}">[[${user}]]</li>
+    Hi <nobr sec:authentication="name"></nobr>
   </ul>
+
+  <h1>エントリー</h1>
+  <div th:if="${userName}">
+    <ul>
+      <li th:each="user : ${userName}"><a th:href="@{/match(id=${user.id})}"> [[${user.userName}]] </a></li> <!--usernameという変数だと認識してくれなかった-->
+    </ul>
+  </div>
+
+  </br>
+
+  <h1>試合結果</h1>
+  <p th:if="${matchs}">
+  <div th:each="match,stat:${matchs}">
+    <tr>
+      <td>id:[[${match.id}]]</td>
+      <td>user1:[[${match.user1}]]</td>
+      <td>user2:[[${match.user2}]]</td>
+      <td>user1の手:[[${match.user1Hand}]]</td>
+      <td>user2の手:[[${match.user2Hand}]]</td>
+    </tr>
+  </div>
+  </br>
 
   <a href="/jankengame?hand=Gu">グー</a>
   <a href="/jankengame?hand=Ch">チョキ</a>
