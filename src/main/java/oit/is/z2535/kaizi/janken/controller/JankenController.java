@@ -23,10 +23,10 @@ public class JankenController {
   @Autowired
   private Entry entry;
 
-  @Autowired //UserMapper内の関数を使用
+  @Autowired // UserMapper内の関数を使用
   UserMapper usermappser;
 
-  @Autowired //MatchMapper内の関数を使用
+  @Autowired // MatchMapper内の関数を使用
   MatchMapper matchmappser;
 
   @GetMapping("/janken")
@@ -42,21 +42,28 @@ public class JankenController {
     return "janken.html";
   }
 
-  @GetMapping("/jankengame")
-  public String jankengame(@RequestParam String hand, ModelMap model) {
+  @GetMapping("/fight")
+  public String jankengame(@RequestParam Integer id,@RequestParam String hand, Principal prin, ModelMap model) {
     Janken janken = new Janken();
     String cpuhand = janken.cpuhand();
     String result = janken.judge(hand, cpuhand);
-
+    String userid = usermappser.selectById(id); //cpuの名前を取得
+    Match match = new Match();
+    String loginUser = prin.getName(); //ログイン名を取得
+    int loginUser_id = usermappser.selectByName(loginUser);
+    match.setUser1(loginUser_id);//自分のid
+    match.setUser2(id);//cpuのid
+    match.setUser1Hand(hand);//自分の手
+    match.setUser2Hand(cpuhand);//相手の手
+    model.addAttribute("name", userid);
     model.addAttribute("myhand", hand);
     model.addAttribute("yourhand", cpuhand);
     model.addAttribute("result", result);
+    matchmappser.insertMatch(match);//DBにinsert
     // ModelMap型変数のmodelにmyhandという名前の変数で，handの値を登録する．
     // ここで値を登録するとthymeleafが受け取り，htmlで処理することができるようになる
 
-    model.addAttribute("entry", this.entry);
-
-    return "janken.html";
+    return "match.html";
   }
 
   @GetMapping("/match")
