@@ -16,4 +16,8 @@ public interface MatchMapper {
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertMatch(Match chamber);
 
+  @Insert("INSERT INTO matches (user1,user2,user1Hand,user2Hand,result) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand},#{result});")
+  @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
+  void insertAllMatch(Match chamber);
+
 }

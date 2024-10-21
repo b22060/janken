@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Janken {
   String result;
+
   public Janken() {
 
   }
@@ -34,9 +35,9 @@ public class Janken {
     int randomNumber = x.nextInt(3);
     String hand;
 
-    if(randomNumber == 0){
+    if (randomNumber == 0) {
       hand = "Gu";
-    }else if(randomNumber == 1){
+    } else if (randomNumber == 1) {
       hand = "Ch";
     } else {
       hand = "Pa";
