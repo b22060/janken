@@ -55,11 +55,12 @@ public class JankenController {
     match.setUser2(id);//cpuのid
     match.setUser1Hand(hand);//自分の手
     match.setUser2Hand(cpuhand);//相手の手
-    model.addAttribute("name", userid);
-    model.addAttribute("myhand", hand);
-    model.addAttribute("yourhand", cpuhand);
-    model.addAttribute("result", result);
-    matchmappser.insertMatch(match);//DBにinsert
+    match.setResult(result);//結果
+    model.addAttribute("name", userid);//
+    model.addAttribute("myhand", hand);//htmlに渡す
+    model.addAttribute("yourhand", cpuhand);//
+    model.addAttribute("result", result);//
+    matchmappser.insertAllMatch(match);//DBにinsert
     // ModelMap型変数のmodelにmyhandという名前の変数で，handの値を登録する．
     // ここで値を登録するとthymeleafが受け取り，htmlで処理することができるようになる
 
