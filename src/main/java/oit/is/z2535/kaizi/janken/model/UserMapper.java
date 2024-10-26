@@ -15,4 +15,7 @@ public interface UserMapper {
 
   @Select("SELECT id from users where userName = #{userName}") // 特定の名前で特定のidを表示
   int selectByName(String userName);
+
+  @Select("SELECT * from users where id = #{id}") // 特定のidで全部の情報を表示
+  User selectAllById(int id);
 }
