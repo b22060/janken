@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface MatchMapper {
@@ -20,4 +21,12 @@ public interface MatchMapper {
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertAllMatch(Match chamber);
 
+  @Select("SELECT id FROM matches WHERE isActive = true")
+  int selectActiveIdByMatch();
+
+  @Select("SELECT * FROM matches WHERE id = #{id}")
+  Match selectActiveByMatch(int id);
+
+  @Update("UPDATE matches SET isActive = FALSE where id = #{id}")//FALSEにする
+  void updateActive(int id);
 }

@@ -8,7 +8,7 @@ CREATE TABLE matches (
     user2 INT NOT NULL,
     user1Hand VARCHAR NOT NULL,
     user2Hand VARCHAR NOT NULL,
-    result VARCHAR NOT NULL,
+    result VARCHAR,
     isActive BOOLEAN NOT NULL
 );
 CREATE TABLE matchinfo (

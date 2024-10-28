@@ -7,6 +7,8 @@ public class MatchInfo {
   String user1Hand;
   Boolean isActive;
 
+  
+
   public int getId() {
     return id;
   }
