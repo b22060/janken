@@ -9,13 +9,13 @@
   <h1>Match</h1> <!--表示-->
 
   <h2>
-    <nobr sec:authentication="name"></nobr>V.S.<td>[[${name}]]</td>
+    <nobr sec:authentication="name"></nobr>V.S.<td>[[${userdata.userName}]]</td>
   </h2>
 
 
-  <a href="/fight?id=1&hand=Gu">グー</a>
-  <a href="/fight?id=1&hand=Ch">チョキ</a>
-  <a href="/fight?id=1&hand=Pa">パー</a>
+  <a th:href="@{/fight(id=${userdata.id}, hand=Gu)}">グー</a>
+  <a th:href="@{/fight(id=${userdata.id}, hand=Ch)}">チョキ</a>
+  <a th:href="@{/fight(id=${userdata.id}, hand=Pa)}">パー</a>
   </br>
 
   <div th:if="${myhand}">
