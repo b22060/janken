@@ -75,14 +75,17 @@ public class AsyncKekka {// DB処理はここで行う
           TimeUnit.MILLISECONDS.sleep(500);
           continue;
         }
-        TimeUnit.MILLISECONDS.sleep(100);
-        int id = MMapper.selectActiveIdByMatch(); // Activeの試合情報を渡す
-        System.out.println(id);
-        Match match = MMapper.selectActiveByMatch(id);
-        emitter.send(match);
-        MMapper.updateActive(id); // matchをfalseにする
+
         TimeUnit.MILLISECONDS.sleep(100);
         dbUpdated = false;
+
+        TimeUnit.MILLISECONDS.sleep(100);
+        //int id = MMapper.selectActiveIdByMatch(); // Activeの試合情報を渡す
+        Match match = MMapper.selectActiveByMatch(this.fid);
+        emitter.send(match);
+        TimeUnit.MILLISECONDS.sleep(200);
+        MMapper.updateActive(this.fid); // matchをfalseにする
+        TimeUnit.MILLISECONDS.sleep(200);
       }
     } catch (Exception e) {
       // 例外の名前とメッセージだけ表示する
