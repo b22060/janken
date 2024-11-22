@@ -32,7 +32,7 @@ public interface MatchInfoMapper {
   String selectOpponenthandById(int id);// 対称のレコードのhandを取り出す
 
   @Update("UPDATE matchinfo SET isActive = FALSE where id = #{id}") // FALSEにする
-  void updateActive(int id);
+  boolean updateActive(int id);
 
   @Update("UPDATE matchinfo SET isActive = TRUE WHERE isActive =TRUE AND (user1 = #{opponentid} AND user2 =#{userid});")
   boolean checkActive(int opponentid, int userid);

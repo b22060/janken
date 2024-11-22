@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-//import oit.is.z2535.kaizi.janken.model.Janken;
+import oit.is.z2535.kaizi.janken.model.Janken;
 import oit.is.z2535.kaizi.janken.model.UserMapper;
 import oit.is.z2535.kaizi.janken.service.AsyncKekka;
 import oit.is.z2535.kaizi.janken.model.Entry;
@@ -51,12 +51,12 @@ public class JankenController {
     model.addAttribute("userName", user);
     model.addAttribute("matchs", match);
     model.addAttribute("info", info);
-
     return "janken.html";
   }
 
   @GetMapping("/fight")
   public String jankengame(@RequestParam Integer id, @RequestParam String hand, Principal prin, ModelMap model) {
+    Janken janken = new Janken();
     MatchInfo info = new MatchInfo();
     String loginUser = prin.getName(); // ログイン名を取得
     int loginUser_id = usermappser.selectByName(loginUser);// ID取得
@@ -66,14 +66,14 @@ public class JankenController {
     info.setUser1Hand(hand); // 自分の手
     info.setIsActive(active); // isActiveをtrueに
     model.addAttribute("loginUser", loginUser);
-    // matchinfomappser.insertAllMatchInfo(info); //MatchInfoにinsert
+    //matchinfomappser.insertAllMatchInfo(info); //MatchInfoにinsert
 
     if (matchinfomappser.cheakActiveById(id, loginUser_id) == "TRUE") {// 自分と相手のidでactiveの試合があるか？
-      System.out.println(id);
       int matching = matchinfomappser.selectActiveById(id, loginUser_id); // 相手の情報があるレコードを取り出す
-      System.out.println(matching);
       String opponenthand = matchinfomappser.selectOpponenthandById(matching);// 相手の手を取り出す
       Match match = new Match(loginUser_id, id, hand, opponenthand, true);// 試合の情報を格納
+      String fight = janken.judge(hand, opponenthand);
+      match.setResult(fight);
       DBInfo.syncInsertMatch(match);
       DBInfo.syncUpdateActive(matching);
     } else {

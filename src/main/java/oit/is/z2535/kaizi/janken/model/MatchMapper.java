@@ -15,14 +15,14 @@ public interface MatchMapper {
 
   @Insert("INSERT INTO matches (user1,user2,user1Hand,user2Hand,isActive) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand},#{isActive});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-  void insertMatch(Match chamber);
+  void insertMatch(Match match);
 
   @Insert("INSERT INTO matches (user1,user2,user1Hand,user2Hand,result,isActive) VALUES (#{user1},#{user2},#{user1Hand},#{user2Hand},#{result},#{isActive});")
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-  void insertAllMatch(Match chamber);
+  void insertAllMatch(Match match);
 
-  @Select("SELECT id FROM matches WHERE isActive = true")
-  int selectActiveIdByMatch();
+  @Select("SELECT * FROM matches WHERE isActive = true")
+  ArrayList<Match> selectActiveIdByMatch();
 
   @Select("SELECT * FROM matches WHERE id = #{id}")
   Match selectActiveByMatch(int id);

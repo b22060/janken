@@ -52,17 +52,17 @@ public class AsyncKekka {// DB処理はここで行う
   }// DBからtureかつ自分のidの試合の状態を返す
 
   public int syncActiveRecode() {
-    ArrayList<Match> tmp = this.syncShowMatchList();
+    ArrayList<Match> tmp = this.MMapper.selectActiveIdByMatch();
     return tmp.get(0).getId();
   }
 
   public void syncInsertMatch(Match match) {
-    this.MMapper.insertMatch(match);// 試合結果を格納する
+    this.MMapper.insertAllMatch(match);// 試合結果を格納する
     this.fid = this.syncActiveRecode();
   }
 
-  public void syncUpdateActive(int id) {
-    this.MIMapper.updateActive(id);
+  public boolean syncUpdateActive(int id) {
+    return this.MIMapper.updateActive(id);
   }
 
   @Async
@@ -93,6 +93,6 @@ public class AsyncKekka {// DB処理はここで行う
     } finally {
       emitter.complete();
     }
-    System.out.println("asyncShowFruitsList complete");
+    System.out.println("asyncJanken complete");
   }
 }
